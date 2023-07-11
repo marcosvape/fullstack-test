@@ -36,18 +36,18 @@ public class StgEnv extends TerraformStack {
     public StgEnv(final Construct scope, final String id) {
         super(scope, id);
 
-        String region = "us-east-1";
+        String region = "us-west-1";
 
         AwsProvider.Builder.create(this, id)
                 .region(region)
                 .build();
 
         RemoteBackend remoteBack = new RemoteBackend(this, RemoteBackendProps.builder()
-                .organization("rready")
-                .workspaces(new NamedRemoteWorkspace("fullstack-dev"))
+                .organization("NGTI")
+                .workspaces(new NamedRemoteWorkspace("fullstack-test"))
                 .build());
 
-        String vpcName = "vpc-dev";
+        String vpcName = "vpc-stg";
 
         Vpc vpc = new Vpc(this, vpcName, ResourceProviderUtil.generateVpc());
 
@@ -56,13 +56,13 @@ public class StgEnv extends TerraformStack {
         String cloudWatchLogGroupName = "/vpc/vpc-flow";
         String cloudWatchId = "\"vpc-flow\"";
 
-        List<String> subnets = ResourceProviderUtil.setupVpcSubnet(vpc.getId(), "us-east-1a", "us-east-1b", "us-east-1c", this);
+        List<String> subnets = ResourceProviderUtil.setupVpcSubnet(vpc.getId(), "us-west-1a", "us-west-1b", "us-west-1c", this);
 
         String iamRoleName = "ecsTaskExecutionRole";
 
         IamRole iamRole = ResourceProviderUtil.generateECSIamRole(iamRoleName, this);
 
-        String ecsClusterName = "development";
+        String ecsClusterName = "staging";
         String clusterServiceDiscoveryZoneName = "api.internal";
 
         EcsCluster ecsCluster = new EcsCluster(this, ecsClusterName, ResourceProviderUtil.generateEcsCluster(ecsClusterName));
@@ -159,7 +159,7 @@ public class StgEnv extends TerraformStack {
         String dns = this.createServiceWithLoadBalancer(securityGroupName, vpcName, cloudWatchLogGroupName, cloudWatchId, taskDefinitionName,
                 gson.toJson(containers), serviceName, containerName, subnets, serviceDiscoveryId,
                 clusterARN, iamRoleARN, targetGroupName, loadBalancerName, taskMemory.toString(), taskCpus.toString(),
-                port, "/health", "200-299", 1);
+                port, "/", "200-299", 1);
 
         return "http://" + containerName + "." + clusterServiceDiscoveryName + ":" + port;
     }

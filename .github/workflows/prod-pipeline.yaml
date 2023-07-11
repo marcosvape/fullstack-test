@@ -1,9 +1,9 @@
-name: CI/CD for the project and terraform apply pipeline - DEV
+name: CI/CD for the project and terraform apply pipeline - PROD
 
 on:
   push:
     branches:
-      - develop
+      - main
 
 jobs:
   build-dev:
@@ -32,7 +32,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: us-east-1
+          aws-region: us-east-2
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -51,5 +51,5 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
-          AWS_DEFAULT_REGION: us-east-1
-        run: aws ecs update-service --cluster development --service fullstack-test-service --force-new-deployment
+          AWS_DEFAULT_REGION: us-east-2
+        run: aws ecs update-service --cluster production --service fullstack-test-service --force-new-deployment
