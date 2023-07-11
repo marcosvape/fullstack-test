@@ -65,7 +65,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <mainClass>com.terraform.cdk.tool.templates.StgEnv</mainClass>
+                    <mainClass>com.terraform.cdk.tool.templates.DevEnv</mainClass>
                 </configuration>
             </plugin>
         </plugins>
