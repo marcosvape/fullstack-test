@@ -27,6 +27,7 @@ jobs:
           npm install react-scripts
           npm install
           npm run lint
+          npm install -g prettier
           npm run prettier
           npm run test
           npm run build
