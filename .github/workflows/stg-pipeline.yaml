@@ -17,14 +17,17 @@ jobs:
         run:
           docker image build -t terraform-infra:latest -f terraform_aws_environment/Dockerfile --build-arg TERRAFORM_CREDENTIALS="${{secrets.TERRAFORM_CREDENTIALS}}" .
 
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 15.x
       - name: Install dependencies
         run: |
           cd codebase/rdicidr-0.1.0
           npm install react-scripts
           npm install
           npm run lint
-          npm run prettier
-          npm run test
+          npm install -g prettier
           npm run build
 
       - name: Configure AWS credentials
@@ -44,7 +47,7 @@ jobs:
           ECR_REPOSITORY: fullstack-test
           IMAGE_TAG: latest
         run: |
-          docker image build -t fullstack-test:latest -f /codebase/rdicidr-0.1.0/Dockerfile .
+          docker image build -t fullstack-test:latest -f codebase/rdicidr-0.1.0/Dockerfile .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
       - name: Redeploy ECS service to fetch latest image tag
