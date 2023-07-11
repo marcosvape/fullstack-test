@@ -15,7 +15,7 @@ jobs:
 
       - name: Build terraform module job
         run:
-          docker image build -t terraform-infra:latest -f /terraform_aws_environment/Dockerfile --build-arg TERRAFORM_CREDENTIALS="${{secrets.TERRAFORM_CREDENTIALS}}" .
+          docker image build -t terraform-infra:latest -f terraform_aws_environment/Dockerfile --build-arg TERRAFORM_CREDENTIALS="${{secrets.TERRAFORM_CREDENTIALS}}" .
 
       - name: Install dependencies
         run: |
