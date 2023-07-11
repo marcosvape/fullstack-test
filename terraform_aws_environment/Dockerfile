@@ -3,7 +3,7 @@ FROM marcosvap/terraform-cdk-base:latest
 ARG TERRAFORM_CREDENTIALS
 ENV TERRAFORM_CREDENTIALS $TERRAFORM_CREDENTIALS
 
-COPY ./ /project
+COPY ./terraform_aws_environment /project
 
 WORKDIR project
 
