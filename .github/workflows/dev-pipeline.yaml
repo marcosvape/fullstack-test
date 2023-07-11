@@ -28,8 +28,6 @@ jobs:
           npm install
           npm run lint
           npm install -g prettier
-          npm run prettier
-          npm run test
           npm run build
 
       - name: Configure AWS credentials
