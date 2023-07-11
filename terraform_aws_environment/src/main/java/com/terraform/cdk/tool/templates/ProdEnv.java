@@ -131,7 +131,7 @@ public class ProdEnv extends TerraformStack {
         String serviceName = "fullstack-test-service";
         String targetGroupName = "fullstack-test-tg";
         String loadBalancerName = "fullstack-test-lb";
-        Integer port = 8080;
+        Integer port = 3000;
 
         Integer taskMemory = 512;
         Integer taskCpus = taskMemory / 2;

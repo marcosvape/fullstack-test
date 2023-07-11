@@ -23,8 +23,3 @@ _cdktf synth_
 after generating the terraform files, remember to add the remote backend configuration and then just run the following:
 
 _terraform login terraform init terraform plan terraform apply_
-
-SdhTde1h1xpZTg.atlasv1.PSzdyuAFczacc9zGzfZxpxtzsMJ3KcgvCYPjmfTrdHGc4TUNQurxVjIk1XDyenp3eUA
-
-AKIA4JOEK4MXSY47D45E
-uYgfrP5aaTCgAVIScMt0AeMunh07iXDSMEvzOB8Z
