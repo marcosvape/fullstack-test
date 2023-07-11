@@ -1,4 +1,4 @@
-FROM node:15.0-slim
+FROM node:latest
 
 COPY ./ /project
 
