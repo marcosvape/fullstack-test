@@ -3,7 +3,7 @@ name: CI/CD for the project and terraform apply pipeline
 on:
   push:
     branches:
-      - 'develop'
+      - develop
 
 jobs:
   build-dev:
