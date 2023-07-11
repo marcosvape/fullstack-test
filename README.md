@@ -1,6 +1,6 @@
 # DevOpsChallenge
 # LabsDemo
-# trigger
+# trigger2
 
 terraform tool template used for this:
 
